@@ -27,7 +27,7 @@ Adeline Estate is a wedding and accommodation venue I co-own in the Hunter Valle
 
 **Known open issues:**
 - Some redirects return HTTP 200 instead of 301. The fix needs Cloudflare rules. Unresolved on 13 November.
-- The email domain is missing DKIM and DMARC authentication. Some replies bounced from Hotmail addresses (diagnosed 10 November). Fix outstanding.
+- **Fixed 16 November 2026:** some replies bounced from Hotmail addresses because the domain had no DKIM or DMARC (diagnosed 10 November). I added both records. A test from the bookings inbox now passes SPF, DKIM and DMARC, and a test to a Hotmail address landed in the inbox.
 
 ---
 
@@ -94,7 +94,7 @@ Out of scope here: a separate OpenAI assistant I also use (product name **UNSURE
 |---|---|---|---|
 | 7 Oct | A duplicate Airbnb message went out after the send hung on "Sending..." | Recorded | Every Airbnb guest message now needs my OK |
 | 19 Oct | A date reply auto-sent after a two-hour review window passed without my answer | Recorded | Whether that timeout still applies is **UNSURE** |
-| From 20 Oct | Brevo email authentication was incomplete. Delivery and junk-folder risk. | Records | Brevo paused. Gmail used instead. Domain authentication still outstanding. |
+| From 20 Oct | Brevo email authentication was incomplete. Delivery and junk-folder risk. | Records | Brevo paused. Gmail used instead. Domain DKIM and DMARC fixed 16 Nov for Gmail sends. Brevo is not yet authenticated and stays paused. |
 | 28 Oct | A scheduled lead check and a manual reply both sent a guide to the same lead, 37 seconds apart | The agent found it checking Sent. I asked why. | Hard rule for all agents: check Sent before any send. Built into the lead and follow-up routines. |
 | 29 Oct | A follow-up run failed | Caught up at 1:44pm | Cause not logged |
 | 30 Oct | A call confirmation to an engaged lead ended "Reply STOP to unsubscribe" | I caught it | STOP only on nurture to non-responders. Both routines updated, confirmed 3 Nov. |
@@ -112,5 +112,5 @@ These figures appeared in summaries but aren't backed yet: 59 guides sent, 528 e
 
 - **The measurable win is speed.** Median venue guide response dropped from hours to about 10 minutes once sending was automated with guardrails.
 - **The failures I logged were mostly coordination, not model ability.** Two senders, a missed check, a hung send. Each became a written rule.
-- **Most blockers were access.** Xero bank lines, Cloudflare redirects and email authentication all stalled on permissions or setup.
+- **Most blockers were access.** Xero bank lines, Cloudflare redirects and email authentication all stalled on permissions or setup. The email one took two DNS records to fix once I found where the domain was managed.
 - **Rules in chat are not gates.** The 19 October and 10 November sends show the gap. Where a mistake is costly, the control has to live in the platform.

@@ -39,8 +39,8 @@ Seven role agents and one manager Bot, all on **Grok Bot** (SpaceXSI). Start dat
 |---|---|---|---|---|---|---|
 | **Primary Bot** | Team manager | Daily 7:54am visit heads-up (only if a visit is today or tomorrow). Mon 8:41am waiting-on-me list. Tue 9:12am accountability check. | Other Bots, bookings Gmail and Calendar, WIP Sheet, Google Drive | Hands out tasks, chases owners, compiles lists and digests | Any supplier or client message | 2 Oct |
 | **Ava** | Executive assistant | Weekday 8am brief. 8am and 4pm WIP checks. Fri 4:04pm numbers chase. Fri 4:47pm handoff. | WIP Sheet, bookings Gmail, Calendar, Drive, a shared context folder | Keeps the WIP tidy, chases owners, compiles weekly numbers, writes briefs | Anything sent outside the team. Some WIP writes needed Auto-review approval. | 13 Sep |
-| **Alex** | Sales coordinator | Lead check three times an hour, 7am to midnight. Inbox watch every 30 min. Daily 9:43am follow-ups. Fri 2:20pm sales pack. Monday pipeline review (time **UNSURE**). | bookings Gmail, Calendar, Lovable CRM, WIP, Brevo (some sends), Command Centre (read-only) | First replies to clean wedding leads, nurture follow-ups, date replies after checking bookings, CRM and WIP updates | Anything unusual (saved as a draft), non-standard pricing, discounts, Airbnb messages, calendar RSVPs, bounced addresses, booking and deposit stages | 11 Sep |
-| **Riley** | Operations coordinator | Airbnb alert check every 30 min, 7:27am to 9:57pm. Post-checkout checks. Fri 3:13pm ops numbers. | Outlook (Airbnb notifications), Airbnb host site in a shared browser, bookings Gmail, Calendar, WIP | Vets Airbnb enquiries using a guest-vetting skill. Watches stays, deliveries and changeovers. | Every Airbnb guest message (since 7 Oct). Booking cleaners. | 13 Sep |
+| **Alex** | Sales coordinator | Lead check three times an hour, 7am to midnight. Inbox watch every 30 min. Daily 9:43am follow-ups. Fri 2:20pm sales pack. Monday pipeline review (time **UNSURE**). | bookings Gmail, Calendar, Lovable CRM, WIP, Brevo (some sends), Command Centre (read-only) | All wedding sales: first replies to clean wedding leads, nurture follow-ups, date replies after checking bookings, tour times offered straight from the calendar for speed to lead, CRM and WIP updates | Anything unusual (saved as a draft), non-standard pricing, discounts, calendar RSVPs, bounced addresses, booking and deposit stages | 11 Sep |
+| **Riley** | Operations manager | Airbnb alert check every 30 min, 7:27am to 9:57pm. Post-checkout checks. Fri 3:13pm ops numbers. | Outlook (Airbnb notifications), Airbnb host site in a shared browser, bookings Gmail, Calendar, WIP | Guest messages and bookings. Vets Airbnb enquiries using a guest-vetting skill. Briefs cleaners on changeovers, early check-ins, pets and special occasions. Watches stays and deliveries. | Anything out of the ordinary | 13 Sep |
 | **Quinn** | Finance coordinator | Mon 8:13am cash and overdue summary. Friday finance pack by 4pm. | bookings Gmail, WIP, Xero (read-only; bank lines blocked by account role) | Logs invoices. Checks maths, duplicates and superseded versions. Writes packs. | All payments and quote acceptances | 13 Sep |
 | **Maya** | Marketing coordinator | Fri 2:23pm enquiry summary (from 9 Oct) | bookings Gmail, WIP | Counts enquiries by source. Drafts listing work. | Publishing and spending | 13 Sep |
 | **Morgan** | Strategy and performance | Mon 8:59am management pack. Friday Command Centre entry by 6pm. | Command Centre, WIP, report files | Analysis, weekly packs, Friday rows | All decisions | 13 Sep |
@@ -57,18 +57,18 @@ Out of scope here: a separate OpenAI assistant I also use (product name **UNSURE
 **How I approve.** Plain words in the Grok Bot chat. Draft cards where I press Send. Drafts left in the bookings inbox. Auto-review approval cards.
 
 **Standing rules, in order:**
-- **7 Oct:** no automatic Airbnb guest messages. Every one needs my OK.
+- **7 Oct:** no automatic Airbnb guest messages. Every one needs my OK. Later relaxed: Riley now handles routine guest messages and cleaner briefs, and only out-of-the-ordinary ones come to me (date of change **UNSURE**).
 - **8 Oct:** a WIP update doesn't prove anyone saw it. It never authorises outreach.
 - **11 Oct:** standing permission for lead replies and follow-ups. Airbnb, RSVPs and anything unusual still wait.
-- **Lead guardrails:** real email, 120 guests or fewer, no clearly low budget, nothing odd. Otherwise draft only. Never promise availability. Maximum 5 sends per run.
+- **Lead guardrails:** real email, 120 guests or fewer, no clearly low budget, nothing odd. Otherwise draft only. Maximum 5 sends per run. Tour times are offered straight from the calendar, because speed to lead wins venue bookings. Whether Alex also confirms tours, and whether Sundays are included, is **UNSURE**.
 - **28 Oct:** check Sent for that person before any send.
 - **30 Oct:** "Reply STOP" only on nurture to non-responders.
 - **5 Nov:** read the full Airbnb thread before any guest rundown or draft.
 - Finance is read-only and draft-first.
 
-**Fully automatic:** first replies to clean wedding leads, daily follow-ups, inbox watches, CRM and WIP updates, invoice logging and checks, briefs, WIP checks, weekly packs and Command Centre entries.
+**Fully automatic:** first replies to clean wedding leads, tour offers from the calendar, routine guest messages, cleaner briefs, daily follow-ups, inbox watches, CRM and WIP updates, invoice logging and checks, briefs, WIP checks, weekly packs and Command Centre entries.
 
-**Always waits for me:** payments and quotes, Airbnb guest messages, tour and visit confirmations, booking cleaners, one-off client and supplier replies, pricing exceptions.
+**Always waits for me:** payments and quotes, pricing exceptions, one-off client and supplier replies, and anything out of the ordinary.
 
 **How I review:** a daily heads-up and 8am brief. Monday cash, waiting-on-me and strategy packs. A Tuesday accountability check. Friday packs feed the Command Centre by 6pm. A monthly guest feedback review. Decisions are logged on the WIP Sheet and in a decision log file.
 

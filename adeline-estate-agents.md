@@ -1,6 +1,6 @@
-# Adeline Estate: seven business agents on Grok Bot
+# Adeline Estate: a website and CRM I shipped, and the AI team that runs on them
 
-Adeline Estate is a wedding and accommodation venue I co-own in the Hunter Valley, NSW. Seven AI agents on Grok Bot run parts of the business under my direction. This page documents the system and what the records show it did.
+Adeline Estate is a wedding and accommodation venue I co-own in the Hunter Valley, NSW. I built its website and a custom CRM with AI tools. A team of AI agents on Grok Bot now works the pipeline, the inbox and the books under my direction.
 
 [Back to the playbook](README.md)
 
@@ -8,94 +8,109 @@ Adeline Estate is a wedding and accommodation venue I co-own in the Hunter Valle
 
 ## Evidence standard
 
-- These facts come from my operating WIP, Command Centre and emails. I checked them through 16 November 2026.
-- Some entries were written by the agents themselves. Treat them as recorded operating results. They are not an independent audit of the runtime.
+- Checked 16 November 2026. Read-only. All times are Sydney time (AEDT).
+- Sources are my CRM, the bookings inbox, my WIP Sheet and Command Centre (both Google Sheets) and the agents' own reports.
+- Some records were written by the agents. Treat them as recorded operating results, not an independent audit.
+- Schedules are as each agent reported its own routines. The routine settings themselves weren't readable.
 - "Sent" means recorded as sent. It does not mean delivered.
 - **UNSURE** marks anything the records don't support or that conflicts.
-- The operating records cover September to November 2026. The exact go-live date of each agent is **UNSURE**.
 
-## System boundaries
+---
 
-- **Grok Bot** runs the seven agents. **Routines** are its recurring or event-triggered workflows.
-- A record showing an agent used Gmail or another system doesn't prove the exact plugin, API, browser connection or permission scope. Current connector configuration is **UNSURE** unless stated.
-- My ChatGPT assistant is a **dot**. It is separate from the seven agents.
-- My earlier n8n, Railway, Telegram and Claude API build is a separate project. It is not the runtime for these agents.
-- Automatic sync between Grok Bot and my dot is **UNSURE**. There is no evidence of a shared database or a specific integration architecture.
-- All seven agents maintain WIP records and produce or update working files.
+## 1. Shipped: [adelineestate.au](https://www.adelineestate.au)
 
-## The agents
+**The website.** Built in Lovable, with Claude Design and ChatGPT.
 
-| Agent and role | Recorded triggers | Systems used in the records |
+**A custom CRM.** I built the back end and sales pipeline in Lovable with ChatGPT and Grok Bot agents. No off-the-shelf CRM. It captures venue guide requests and enquiries from the site into a leads table, with stages from new enquiry to booking won. The agents now read and update it as part of their routines.
+
+**What it handles.** 64 wedding leads were logged from 13 September to 14 November 2026: 35 venue guide requests and 29 enquiries. (Lovable CRM, leads table, wedding only, test rows excluded. 62 distinct emails. 6 rows were hand-entered.)
+
+**Known open issues:**
+- Some redirects return HTTP 200 instead of 301. The fix needs Cloudflare rules. Unresolved on 13 November.
+- The email domain is missing DKIM and DMARC authentication. Some replies bounced from Hotmail addresses (diagnosed 10 November). Fix outstanding.
+
+---
+
+## 2. The team
+
+Seven role agents and one manager Bot, all on **Grok Bot** (SpaceXSI). Start dates are each agent's creation date.
+
+| Agent | Role | Triggers | Connects to | Does on its own | Waits for me | Started |
+|---|---|---|---|---|---|---|
+| **Primary Bot** | Team manager | Daily 7:54am visit heads-up (only if a visit is today or tomorrow). Mon 8:41am waiting-on-me list. Tue 9:12am accountability check. | Other Bots, bookings Gmail and Calendar, WIP Sheet, Google Drive | Hands out tasks, chases owners, compiles lists and digests | Any supplier or client message | 2 Oct |
+| **Ava** | Executive assistant | Weekday 8am brief. 8am and 4pm WIP checks. Fri 4:04pm numbers chase. Fri 4:47pm handoff. | WIP Sheet, bookings Gmail, Calendar, Drive, a shared context folder | Keeps the WIP tidy, chases owners, compiles weekly numbers, writes briefs | Anything sent outside the team. Some WIP writes needed Auto-review approval. | 13 Sep |
+| **Alex** | Sales coordinator | Lead check three times an hour, 7am to midnight. Inbox watch every 30 min. Daily 9:43am follow-ups. Fri 2:20pm sales pack. Monday pipeline review (time **UNSURE**). | bookings Gmail, Calendar, Lovable CRM, WIP, Brevo (some sends), Command Centre (read-only) | First replies to clean wedding leads, nurture follow-ups, date replies after checking bookings, CRM and WIP updates | Anything unusual (saved as a draft), non-standard pricing, discounts, Airbnb messages, calendar RSVPs, bounced addresses, booking and deposit stages | 11 Sep |
+| **Riley** | Operations coordinator | Airbnb alert check every 30 min, 7:27am to 9:57pm. Post-checkout checks. Fri 3:13pm ops numbers. | Outlook (Airbnb notifications), Airbnb host site in a shared browser, bookings Gmail, Calendar, WIP | Vets Airbnb enquiries using a guest-vetting skill. Watches stays, deliveries and changeovers. | Every Airbnb guest message (since 7 Oct). Booking cleaners. | 13 Sep |
+| **Quinn** | Finance coordinator | Mon 8:13am cash and overdue summary. Friday finance pack by 4pm. | bookings Gmail, WIP, Xero (read-only; bank lines blocked by account role) | Logs invoices. Checks maths, duplicates and superseded versions. Writes packs. | All payments and quote acceptances | 13 Sep |
+| **Maya** | Marketing coordinator | Fri 2:23pm enquiry summary (from 9 Oct) | bookings Gmail, WIP | Counts enquiries by source. Drafts listing work. | Publishing and spending | 13 Sep |
+| **Morgan** | Strategy and performance | Mon 8:59am management pack. Friday Command Centre entry by 6pm. | Command Centre, WIP, report files | Analysis, weekly packs, Friday rows | All decisions | 13 Sep |
+| **Eden** | Product and guest experience | Mon 9:13am, first Monday of the month only (first run 2 Nov) | bookings Gmail, WIP, Google Drive | Feedback review, checklists, venue guide fact-checks | Offer and policy changes | 13 Sep |
+
+Out of scope here: a separate OpenAI assistant I also use (product name **UNSURE**), and my earlier n8n and Telegram agent, which is a different project.
+
+---
+
+## 3. How I stay in control
+
+**Two kinds of control.** A few are platform settings: Grok Bot's Auto-review approval cards and saved Allow rules. Most are standing rules I gave in chat. Rules in chat can fail, and one did (see section 5).
+
+**How I approve.** Plain words in the Grok Bot chat. Draft cards where I press Send. Drafts left in the bookings inbox. Auto-review approval cards.
+
+**Standing rules, in order:**
+- **7 Oct:** no automatic Airbnb guest messages. Every one needs my OK.
+- **8 Oct:** a WIP update doesn't prove anyone saw it. It never authorises outreach.
+- **11 Oct:** standing permission for lead replies and follow-ups. Airbnb, RSVPs and anything unusual still wait.
+- **Lead guardrails:** real email, 120 guests or fewer, no clearly low budget, nothing odd. Otherwise draft only. Never promise availability. Maximum 5 sends per run.
+- **28 Oct:** check Sent for that person before any send.
+- **30 Oct:** "Reply STOP" only on nurture to non-responders.
+- **5 Nov:** read the full Airbnb thread before any guest rundown or draft.
+- Finance is read-only and draft-first.
+
+**Fully automatic:** first replies to clean wedding leads, daily follow-ups, inbox watches, CRM and WIP updates, invoice logging and checks, briefs, WIP checks, weekly packs and Command Centre entries.
+
+**Always waits for me:** payments and quotes, Airbnb guest messages, tour and visit confirmations, booking cleaners, one-off client and supplier replies, pricing exceptions.
+
+**How I review:** a daily heads-up and 8am brief. Monday cash, waiting-on-me and strategy packs. A Tuesday accountability check. Friday packs feed the Command Centre by 6pm. A monthly guest feedback review. Decisions are logged on the WIP Sheet and in a decision log file.
+
+---
+
+## 4. Results
+
+| Result | Period | Source |
 |---|---|---|
-| **Ava**, executive assistant | Morning and afternoon WIP checks. Friday reporting chase and handoff. Logged runs fall around 8 am and 4 pm. The exact configured schedule is **UNSURE**. | Gmail, master WIP (Google Sheets), Command Centre checks, departmental reporting files. |
-| **Alex**, sales coordinator | Hourly first-reply routine. Daily 9:43 am follow-up routine. Friday 2:20 pm sales-pack routine. Website forms and email supply inputs. A direct form-submission webhook is **UNSURE**. | Gmail, Google Calendar, Lovable CRM and lead records, WIP, read-only Command Centre checks. Brevo sends recorded from 15 October, later paused. |
-| **Maya**, marketing coordinator | Friday 2:23 pm enquiry-count routine. Friday website and listing checks around 2:30 pm. Other triggers **UNSURE**. | Gmail form notifications, WIP, marketing files, the public website, a Lovable project. Direct database access **UNSURE**. Some directory changes blocked by missing access. |
-| **Riley**, operations coordinator | 8 am day-before cleaner routine. 12:07 pm check-in routine. Post-checkout checks. Current replacement-cleaner automation **UNSURE**. | Gmail, Google Calendar, Airbnb host interface, Airbnb notifications via Hotmail, WIP, operations files. Airbnb API integration **UNSURE**. |
-| **Quinn**, finance coordinator | Invoice emails and team handoffs. Friday finance pack due by 4 pm. Exact polling or event-trigger setup **UNSURE**. | Gmail, invoice attachments, WIP, finance files. Xero read access from 15 October. Bank statement lines blocked by account permissions. |
-| **Eden**, product and guest experience | Monthly feedback review on the first Monday. Configured 7 October. First recorded review 2 November. Weekday WIP checks. | Gmail, Google Drive, WIP, product documents, an improvement register. Direct Airbnb review integration **UNSURE**. |
-| **Morgan**, strategy and performance adviser | Monday management reviews. Friday Command Centre update due by 6 pm, after Ava's handoff. Exact automation schedule **UNSURE**. | WIP, Command Centre, departmental reports, management-review documents. Direct access to every underlying system **UNSURE**. |
+| **Venue guide speed.** Before auto-replies, the median first response was 251 minutes (25 leads, agent-entered timestamps). After auto-replies began on 11 October, 15 of 20 measured guides went out within 20 minutes. Median 10.45 minutes. | 13 Sep to 11 Oct, then 14 Oct to 14 Nov | CRM submission times matched to sent guides in the bookings inbox |
+| **Follow-ups.** At most 142 automated follow-ups. 191 in total, including a 7 October batch of 42 sent by a separate assistant and 7 approved one by one. | 12 Oct to 16 Nov | Alex's Friday packs and daily reports. Not recounted in Gmail (**UNSURE**). |
+| **Invoices.** 31 invoices logged, worth A$20,756.40. Three superseded versions caught. One A$1 arithmetic error caught. One possible duplicate labour charge of A$210 flagged. | 13 Sep to 16 Nov | WIP FINANCE and COMPLETED tabs |
+| **Scam caught.** A fake video-call invite linked to a remote-access installer. Moved to spam. Records say nobody clicked. | 4 to 5 Oct | WIP |
+| **Reporting rhythm.** Monday management packs saved from 21 Sep. Friday numbers handoffs every week from 2 Oct to 13 Nov. 36 completed items on the WIP. | 21 Sep to 16 Nov | Saved packs, WIP |
 
-## What they do and what comes to me
+**Invoice caveats.** The total uses the corrected figure on one invoice (A$20,755.40 as printed). Quotes and superseded versions are excluded. 19 of 31 come from one contractor. 6 are open. The rest are reported paid, but none are bank-verified, because Xero bank access is blocked. The possible A$210 duplicate was flagged on 28 to 31 October. Both bills were later reported paid on 5 November, and the duplicate is still unconfirmed. It was not caught before money went out.
 
-These are recorded operating rules. They are written instructions, not technically enforced approval gates. I have no configuration or code evidence of enforcement.
+---
 
-| Agent | Works on its own under standing instructions | Comes to me for a decision |
-|---|---|---|
-| **Ava** | Updates WIP status. Checks commitments. Chases missing reports. Prepares briefs and handoffs. | Business decisions and unresolved commitments. The full current approval policy is **UNSURE**. |
-| **Alex** | Sends standard first replies and follow-ups. Checks for replies and earlier sends. Updates CRM and WIP. Stops follow-up when a lead replies, books or asks to stop. | Specific availability replies and resends. See the 19 October incident below. |
-| **Maya** | Counts and deduplicates form submissions. Researches listings. Audits pages. Drafts changes. | Website publishing and directory changes. Approval doesn't mean access was available or the change succeeded. |
-| **Riley** | Monitors bookings. Prepares operational updates. Sends notices within authorised routines. | Cleaner bookings, supplier commitments and site-visit confirmations. |
-| **Quinn** | Logs invoices. Checks arithmetic. Flags possible duplicates. Separates quotes from bills. Prepares pay-or-hold information. | All payments and financial commitments. There is no evidence Quinn executes payments. |
-| **Eden** | Reviews guest correspondence. Maintains product documents. Records unknown facts. Drafts improvements. | Guest-facing checklists, bond rules and readiness standards. |
-| **Morgan** | Consolidates departmental reports. Separates reported from verified figures. Enters weekly snapshots. Prepares recommendations. | Changes to targets, strategy and the operating arrangement. |
+## 5. What went wrong
 
-## Recorded results
-
-Small, dated and sourced. Sources refer to rows in my private WIP and Command Centre.
-
-| Agent | Result | Date | Source |
+| Date | What happened | How it was caught | What changed |
 |---|---|---|---|
-| **Ava** | 4 of 4 departmental packs included in the weekly handoff, recorded around 4:55 pm. | 6 Nov 2026 | WIP, PEOPLE row 3 |
-| **Alex** | 27 follow-up nudges recorded as sent in one weekly pack, 14 of them through Brevo. | 16 to 23 Oct 2026 | WIP, SALES row 3 |
-| **Alex** | 2 of 2 new-lead first replies within 20 minutes in one reporting period. Other periods include a 22-minute reply and a 2-hour-37-minute reply. | Pack of 23 Oct 2026 | WIP, SALES |
-| **Maya** | Audited 13 of 13 journal posts for page links and enquiry calls to action. | 23 Sep 2026 | WIP, COMPLETED row 5 |
-| **Riley** | 2 of 2 day-before cleaner notices recorded as sent on time with correct times. | 28 and 30 Oct 2026 | WIP, OPERATIONS row 2 |
-| **Quinn** | Found an A$1 arithmetic error. The invoice stated A$2,353.35. The correct total was A$2,354.35. | 20 Oct 2026 | WIP, FINANCE row 13 |
-| **Eden** | Logged three proposed improvements from October guest correspondence. These are recommendations awaiting decisions, not implemented changes. | 2 Nov 2026 | WIP, PRODUCT & PRODUCT DELIVERY row 9 |
-| **Morgan** | Six dated weekly snapshots in the Command Centre. | 9 Oct to 13 Nov 2026 | Command Centre, Weekly rows 8 to 13 |
+| 7 Oct | A duplicate Airbnb message went out after the send hung on "Sending..." | Recorded | Every Airbnb guest message now needs my OK |
+| 19 Oct | A date reply auto-sent after a two-hour review window passed without my answer | Recorded | Whether that timeout still applies is **UNSURE** |
+| From 20 Oct | Brevo email authentication was incomplete. Delivery and junk-folder risk. | Records | Brevo paused. Gmail used instead. Domain authentication still outstanding. |
+| 28 Oct | A scheduled lead check and a manual reply both sent a guide to the same lead, 37 seconds apart | The agent found it checking Sent. I asked why. | Hard rule for all agents: check Sent before any send. Built into the lead and follow-up routines. |
+| 29 Oct | A follow-up run failed | Caught up at 1:44pm | Cause not logged |
+| 30 Oct | A call confirmation to an engaged lead ended "Reply STOP to unsubscribe" | I caught it | STOP only on nurture to non-responders. Both routines updated, confirmed 3 Nov. |
+| 5 Nov | Riley built a check-in rundown from the calendar without reading each guest's thread | I caught it | Always read the full thread first. An Auto-review rule was approved the same day (wording **UNSURE**). |
+| 10 Nov | A held follow-up was sent | Recorded | **UNSURE** |
+| 10 to 11 Nov | Routine wakes returned "Aborted" | Recorded | **UNSURE** |
 
-### Invoice logging
+---
 
-- Quinn's log holds **31 invoice or receipt entries**: 29 in FINANCE and 2 in COMPLETED.
-- Their stated face values total **A$20,755.40**. With Quinn's A$1 correction, the total is **A$20,756.40**.
-- Quotes and identified superseded versions are excluded. A subscription receipt is included.
-- Two entries may overlap on a A$210 labour charge. That is unresolved.
-- This is logged bill value. It is not bank-verified spending or money saved.
-- Whether every entry was first received between 13 September and 16 November is **UNSURE**.
+## 6. Not claimed
 
-## What went wrong
+These figures appeared in summaries but aren't backed yet: 59 guides sent, 528 emails sent, about 162 WIP tasks and 1 wedding won. All **UNSURE**.
 
-| Agent | Problem | Response | Status |
-|---|---|---|---|
-| **Alex** | A reply about dates auto-sent on 19 October after a two-hour review window passed without my answer. | Recorded in the sales records. | Whether that timeout rule is still active is **UNSURE**. |
-| **Alex** | Brevo email authentication was incomplete. That raised delivery and junk-folder concerns. | Brevo sends paused by 20 October. Gmail used instead. | Authentication still unresolved in later records. (SALES rows 37, 40) |
-| **Ava** | Targets I had already approved were still listed as awaiting a decision. | Status corrected 18 September. Ava assigned to link dependent work. | Completion of every dependent link **UNSURE**. (COMPLETED row 9) |
-| **Maya** | Redirects meant to return HTTP 301 still returned HTTP 200. | The approved 13 October Lovable work fixed journal metadata. The redirects need Cloudflare rules. | Still unresolved on 13 November. (MARKETING row 5) |
-| **Riley** | Cleaner notices asked for photos and a "done" reply. | I removed those requirements on 6 October. Notices inspected from 7, 21 and 30 October omit it. | Fixed. The cleaner's notices were later cancelled after 5 November. |
-| **Quinn** | Revised invoice versions risked being counted twice. | Older versions of two invoices marked superseded, current versions kept (13 to 16 November). | Not all duplicate-payment risk is resolved. A possible A$210 double charge was flagged after I'd recorded the bills as paid. Payment reconciliation is unresolved. (FINANCE rows 34 to 36) |
-| **Eden** | An "updated" venue-guide link still served the old June PDF. | Caught in a 13 September fact-check. A new v4 link was verified and set for future sends. | Fixed. (COMPLETED rows 15, 17) |
-| **Morgan** | Command Centre write access was blocked in September. | A Mac-export workaround was kept from 25 September. Later weekly entries are present. | How and when direct access was restored is **UNSURE**. (COMPLETED row 28) |
+## 7. What this deployment shows
 
-## Numbers I'm not claiming yet
-
-These figures appeared in earlier summaries. The records don't yet support them.
-
-- **64 wedding enquiries, 13 September to 16 November 2026: UNSURE.** Maya's form counts and Alex's lead counts use different definitions and cutoffs. No deduplicated lead export has reconciled them.
-- **Venue guides sent within 2 to 20 minutes: UNSURE.** One period supports it. Others include slower replies, an unverified reply and delivery failures.
-- **191 automatic follow-ups, 6 October to 16 November 2026: UNSURE.** A large 7 October batch is attributed to my ChatGPT dot, not Grok Bot. A send-level reconciliation is still needed.
-
-## What this deployment shows
-
-- **Most blockers were access, not model ability.** Xero bank lines, Command Centre writes, Cloudflare redirects, directory listings and email authentication all stalled on permissions or setup.
-- **A written approval rule is not an approval gate.** The 19 October auto-send followed a two-hour timeout rule. Where a mistake would be costly, approval needs to be enforced by the system.
-- **Agents report on themselves.** Several records were written by the agents. Morgan's job includes separating reported figures from verified ones. This page applies the same test.
+- **The measurable win is speed.** Median venue guide response dropped from hours to about 10 minutes once sending was automated with guardrails.
+- **The failures I logged were mostly coordination, not model ability.** Two senders, a missed check, a hung send. Each became a written rule.
+- **Most blockers were access.** Xero bank lines, Cloudflare redirects and email authentication all stalled on permissions or setup.
+- **Rules in chat are not gates.** The 19 October and 10 November sends show the gap. Where a mistake is costly, the control has to live in the platform.

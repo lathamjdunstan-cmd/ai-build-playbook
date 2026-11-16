@@ -4,7 +4,7 @@ How I direct an AI coding agent to build and ship production software.
 
 I'm an operator, not a career software engineer. I scope the work, write the rules the agent follows, review what it produces and decide what ships. The agent writes most of the code. This page shows how that works on a real build, with the numbers taken from the git history.
 
-Running agents in a live business is documented separately: [Adeline Estate, seven agents on Grok Bot](adeline-estate-agents.md).
+A second shipped project, the Adeline Estate website and custom CRM, and the AI team that runs on them, is documented separately: [Adeline Estate](adeline-estate-agents.md).
 
 The app's repo is private because it holds client data. Everything below was checked against its full history, and I'm happy to walk through the repo live in an interview.
 

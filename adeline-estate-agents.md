@@ -26,7 +26,7 @@ Adeline Estate is a wedding and accommodation venue I co-own in the Hunter Valle
 **What it handles.** 64 wedding leads were logged from 13 September to 14 November 2026: 35 venue guide requests and 29 enquiries. (Lovable CRM, leads table, wedding only, test rows excluded. 62 distinct emails. 6 rows were hand-entered.)
 
 **Known open issues:**
-- Some redirects return HTTP 200 instead of 301. The fix needs Cloudflare rules. Unresolved on 13 November.
+- Some redirects return HTTP 200 instead of 301. The records said the fix needed Cloudflare rules, but the domain is managed at GoDaddy, not Cloudflare. The redirect fix is still open.
 - **Fixed 16 November 2026:** some replies bounced from Hotmail addresses because the domain had no DKIM or DMARC (diagnosed 10 November). I added both records. A test from the bookings inbox now passes SPF, DKIM and DMARC, and a test to a Hotmail address landed in the inbox.
 
 ---
@@ -112,5 +112,5 @@ These figures appeared in summaries but aren't backed yet: 59 guides sent, 528 e
 
 - **The measurable win is speed.** Median venue guide response dropped from hours to about 10 minutes once sending was automated with guardrails.
 - **The failures I logged were mostly coordination, not model ability.** Two senders, a missed check, a hung send. Each became a written rule.
-- **Most blockers were access.** Xero bank lines, Cloudflare redirects and email authentication all stalled on permissions or setup. The email one took two DNS records to fix once I found where the domain was managed.
+- **Most blockers were access.** Xero bank lines, redirects and email authentication all stalled on permissions or setup. The email one took two DNS records to fix once I found where the domain was managed.
 - **Rules in chat are not gates.** The 19 October and 10 November sends show the gap. Where a mistake is costly, the control has to live in the platform.
